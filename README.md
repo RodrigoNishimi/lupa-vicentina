@@ -1,12 +1,15 @@
 # Lupa Vicentina: Dashboard COOP Clima São Vicente
 
-Painel web 100% estático de utilidade pública para os moradores de São Vicente (SP): demografia, escolas e unidades de saúde, bairro a bairro. Não há backend nem banco de dados — um script de ETL em Python lê as planilhas, trata os dados e gera um único index.html com todos os dados JSON embutidos, pronto para hospedar no GitHub Pages.
+Painel web 100% estático de utilidade pública para os moradores de São Vicente (SP): demografia, escolas e unidades de saúde, bairro a bairro. Não há backend nem banco de dados — um script de ETL em Python lê as planilhas, trata os dados e gera o index.html com todos os dados JSON embutidos, pronto para hospedar no GitHub Pages.
+
+O index.html carrega junto a pasta `assets/oficinas/` (imagens da seção das Oficinas Participativas de Avaliação, referenciadas por caminho relativo) — publique as duas coisas.
 
 ## Estrutura do Projeto
 
 ```text
 ├── assets/
-│   └── logo_branco_verde.png            # Logo do projeto embutida no header
+│   ├── logo_branco_verde.png            # Logo do projeto embutida no header
+│   └── oficinas/                        # Imagens da seção OPA! (caminho relativo, não embutidas)
 ├── scripts/                             # Scripts de limpeza e obtenção de dados
 │   ├── obter_coordenadas.py
 │   ├── process_bases.py
@@ -14,7 +17,7 @@ Painel web 100% estático de utilidade pública para os moradores de São Vicent
 ├── dados.zip                            # Arquivo com os dados utilizados no Dashboard
 ├── etl.py                               # Script de ETL: gera o dashboard final
 ├── template.html                        # Template do dashboard com marcadores de injeção
-├── index.html                           # ARQUIVO FINAL gerado pelo ETL (não editar à mão)
+├── index.html                           # ARQUIVO FINAL gerado pelo ETL (não editar à mão — edite o template.html)
 ├── requirements.txt                     # Dependências do projeto
 └── README.md
 ```
@@ -80,6 +83,7 @@ python -m http.server 8123
 * KPIs: população, renda média (salários mínimos), densidade (hab/ha), escolas ativas, capacidade estimada de matrículas, unidades de saúde e unidades de saúde por 10 mil habitantes.
 * Gráficos (Chart.js): composição populacional por cor/raça, escolas por categoria administrativa, oferta de ensino por etapa/modalidade, porte das escolas, serviços de saúde disponíveis e cobertura SUS.
 * Mapa interativo (Leaflet + OpenStreetMap): escolas públicas (laranja), escolas privadas (azul), saúde SUS (verde) e demais unidades de saúde (marrom), com controle de camadas e popups de detalhes.
+* Oficinas Participativas de Avaliação (OPA!): seção editorial de escopo fixo (não responde ao filtro de bairro) com o processo de escuta territorial do projeto — números (11 oficinas, 361 participantes, 968 pontos mapeados), abordagem passado/presente/futuro, linha do tempo da construção, mapa das 6 áreas com as facilitadoras, registros fotográficos e o mapa colaborativo resultante.
 * Rankings: TOP 10 bairros por escolas, por unidades de saúde e por densidade demográfica.
 * Tabelas de detalhamento em abas (Escolas / Saúde), com busca por nome, endereço ou bairro.
 

@@ -269,9 +269,122 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   padding:12px 16px;font-size:.85rem;color:var(--ink-2);margin-top:12px;
 }
 .apr-placeholder::before{content:"🛠️ ";}
+
+/* ---------- oficinas participativas (OPA!) ---------- */
+/* seção editorial de escopo fixo: não responde ao filtro de bairro */
+.opa-subtitulo{
+  font-size:1.35rem;color:var(--verde-escuro);margin:26px 0 4px;
+  display:flex;align-items:center;gap:8px;
+}
+.opa-sub{color:var(--ink-2);font-size:.85rem;margin-bottom:14px;max-width:78ch}
+.opa-numeros{margin-bottom:4px}
+
+/* os três tempos do território: passado, presente e futuro */
+.opa-abordagem{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.opa-tempo{
+  background:var(--card);border-radius:var(--raio);box-shadow:var(--sombra);
+  padding:15px 17px;border-top:5px solid var(--verde);
+  display:flex;flex-direction:column;gap:6px;
+}
+.opa-tempo.presente{border-top-color:var(--laranja)}
+.opa-tempo.futuro{border-top-color:var(--azul)}
+.opa-tempo-selo{
+  align-self:flex-start;display:inline-block;padding:2px 10px;border-radius:999px;
+  font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+  color:#fff;background:var(--verde);
+}
+.opa-tempo.presente .opa-tempo-selo{background:var(--laranja)}
+.opa-tempo.futuro .opa-tempo-selo{background:var(--azul)}
+.opa-tempo h4{font-family:'Londrina Solid',cursive;font-weight:400;font-size:1.2rem;color:var(--verde-escuro)}
+.opa-tempo p{font-size:.87rem;color:var(--ink-2)}
+
+.opa-principios{
+  background:var(--card);border-radius:var(--raio);box-shadow:var(--sombra);
+  padding:16px 20px;margin-top:14px;border-left:5px solid var(--marrom);
+}
+.opa-principios h4{font-family:'Londrina Solid',cursive;font-weight:400;font-size:1.2rem;color:var(--verde-escuro);margin-bottom:8px}
+/* minmax alto de propósito: os 4 princípios caem como 2+2, não como 3+1.
+   O min() evita que o piso de 400px estoure o card em telas estreitas. */
+.opa-principios ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:6px 22px}
+.opa-principios li{font-size:.87rem;color:var(--ink-2);padding-left:20px;position:relative}
+.opa-principios li::before{content:"✓";position:absolute;left:0;color:var(--verde);font-weight:700}
+
+/* linha do tempo do percurso de construção */
+.opa-percurso{
+  list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  position:relative;padding-top:16px;
+}
+/* fio conector atrás dos marcadores das etapas — centro em 24px, igual ao dos marcadores */
+.opa-percurso::before{
+  content:"";position:absolute;top:22px;left:12.5%;right:12.5%;
+  height:4px;background:var(--borda);border-radius:2px;
+}
+.opa-etapa{position:relative;padding-top:26px;text-align:center}
+.opa-etapa::before{
+  content:"";position:absolute;top:-2px;left:50%;transform:translateX(-50%);
+  width:14px;height:14px;border-radius:50%;background:var(--verde);
+  border:3px solid var(--offwhite);box-shadow:0 0 0 2px var(--verde);
+}
+.opa-etapa:nth-child(2)::before{background:var(--laranja);box-shadow:0 0 0 2px var(--laranja)}
+.opa-etapa:nth-child(3)::before{background:var(--azul);box-shadow:0 0 0 2px var(--azul)}
+.opa-etapa:nth-child(4)::before{background:var(--marrom);box-shadow:0 0 0 2px var(--marrom)}
+.opa-etapa-data{
+  display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--marrom);margin-bottom:2px;
+}
+.opa-etapa-data.imprecisa{color:var(--ink-2);font-weight:500}
+.opa-etapa h4{font-family:'Londrina Solid',cursive;font-weight:400;font-size:1.2rem;color:var(--verde-escuro)}
+.opa-etapa p{font-size:.83rem;color:var(--ink-2);margin-top:4px}
+.opa-nota{
+  background:#faf7f4;border:1px dashed var(--borda);border-radius:10px;
+  padding:11px 16px;font-size:.83rem;color:var(--ink-2);margin-top:16px;
+}
+.opa-nota::before{content:"ℹ️ ";}
+
+/* territórios: mapa das áreas + facilitadoras */
+.opa-territorios{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:start}
+.opa-mapa-areas{
+  background:var(--card);border-radius:var(--raio);box-shadow:var(--sombra);
+  overflow:hidden;margin:0;
+}
+.opa-mapa-areas img{display:block;width:100%;height:auto;background:#e8ddd6}
+.opa-mapa-areas figcaption{padding:9px 13px;font-size:.85rem;color:var(--ink);line-height:1.35}
+.opa-equipe{background:var(--card);border-radius:var(--raio);box-shadow:var(--sombra);padding:16px 20px}
+.opa-equipe h4{font-family:'Londrina Solid',cursive;font-weight:400;font-size:1.2rem;color:var(--verde-escuro);margin-bottom:8px}
+.opa-equipe h4+ul{margin-bottom:16px}
+.opa-equipe ul:last-child{margin-bottom:0}
+.opa-areas-lista{list-style:none;display:flex;flex-direction:column;gap:2px}
+.opa-area-item{
+  display:flex;align-items:center;gap:9px;
+  padding:6px 0;border-bottom:1px solid var(--borda);font-size:.9rem;
+}
+.opa-area-item:last-child{border-bottom:none}
+.opa-dot{
+  flex:none;width:14px;height:14px;border-radius:4px;
+  border:1px solid rgba(0,0,0,.35);
+}
+.opa-area-nome{font-weight:700;color:var(--ink);min-width:64px}
+.opa-area-pessoa{color:var(--ink-2);margin-left:auto}
+
+/* galeria de registros e mapa colaborativo */
+.opa-galeria{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.opa-galeria .apr-foto img{height:240px}
+.opa-mapa-figura{
+  background:var(--card);border-radius:var(--raio);box-shadow:var(--sombra);
+  overflow:hidden;margin:0;
+}
+.opa-mapa-figura img{display:block;width:100%;height:auto;background:#e8ddd6}
+.opa-mapa-figura figcaption{padding:11px 15px;font-size:.85rem;color:var(--ink);line-height:1.4}
+
 @media (max-width:820px){
   .apr-grid{grid-template-columns:1fr}
   .apr-foto img{height:200px}
+  .opa-territorios{grid-template-columns:1fr}
+  /* linha do tempo vira vertical: fio à esquerda, marcadores alinhados nele */
+  .opa-percurso{grid-template-columns:1fr;gap:18px;padding-top:0;padding-left:26px}
+  .opa-percurso::before{top:8px;bottom:8px;left:8px;right:auto;width:4px;height:auto}
+  .opa-etapa{padding-top:0;text-align:left}
+  .opa-etapa::before{top:6px;left:-26px;transform:none}
 }
 
 /* ---------- rodapé ---------- */
@@ -405,6 +518,179 @@ footer a{color:var(--azul)}
     <p class="apr-noticias-sub" id="apr-noticias-sub"></p>
     <div class="apr-noticias" id="apr-noticias"></div>
     <p class="fonte sec-fonte" id="apr-fonte"></p>
+  </section>
+
+  <!-- Oficinas Participativas de Avaliação (OPA!) -->
+  <!-- Seção editorial de escopo fixo: conteúdo do processo participativo do COOP Clima
+       São Vicente. Não usa data-escopo porque não reage ao filtro de bairro. -->
+  <section aria-label="Oficinas Participativas de Avaliação">
+    <h2 class="sec-titulo">COOP Clima São Vicente - Oficinas Participativas de Avaliação (OPA!)
+      <span class="escopo-tag fixo">Toda a cidade</span></h2>
+    <p class="sec-sub">Além dos dados oficiais, o painel escuta quem vive a cidade. As OPA! foram um processo
+    de escuta territorial do COOP Clima São Vicente, construído junto com lideranças comunitárias, gestão
+    municipal e universidades, com o objetivo de <strong>fortalecer a participação social e o diálogo, por meio
+    de uma construção coletiva com as comunidades</strong>.</p>
+
+    <div class="kpi-grid opa-numeros">
+      <div class="kpi">
+        <div class="rotulo">Oficinas realizadas</div>
+        <div class="valor">11</div>
+        <div class="nota">encontros nos territórios de São Vicente</div>
+      </div>
+      <div class="kpi">
+        <div class="rotulo">Participantes</div>
+        <div class="valor">361</div>
+        <div class="nota">moradores de todas as idades</div>
+      </div>
+      <div class="kpi">
+        <div class="rotulo">Pontos mapeados</div>
+        <div class="valor">968</div>
+        <div class="nota">marcados pelos próprios moradores</div>
+      </div>
+      <div class="kpi">
+        <div class="rotulo">Frentes de escuta</div>
+        <div class="valor">6 + 2</div>
+        <div class="nota">seis áreas territoriais e duas frentes temáticas</div>
+      </div>
+    </div>
+
+    <h3 class="opa-subtitulo">🧭 Como as oficinas olharam para o território</h3>
+    <p class="opa-sub">Cada oficina percorreu três tempos do mesmo lugar — o que ele foi, o que ele é
+    e o que a comunidade quer que ele seja.</p>
+    <div class="opa-abordagem">
+      <article class="opa-tempo passado">
+        <span class="opa-tempo-selo">Passado</span>
+        <h4>Memória dos territórios</h4>
+        <p>Resgate da memória dos territórios e das comunidades: o que o lugar já foi e o que ficou
+        registrado na lembrança de quem mora nele.</p>
+      </article>
+      <article class="opa-tempo presente">
+        <span class="opa-tempo-selo">Presente</span>
+        <h4>Avaliação da realidade atual</h4>
+        <p>Leitura coletiva do território como ele é hoje — problemas enfrentados no dia a dia e
+        potencialidades que já existem no bairro.</p>
+      </article>
+      <article class="opa-tempo futuro">
+        <span class="opa-tempo-selo">Futuro</span>
+        <h4>O futuro que se deseja</h4>
+        <p>Convite às comunidades para pensarem o futuro que desejam para seus territórios, apontando
+        caminhos e prioridades.</p>
+      </article>
+    </div>
+
+    <div class="opa-principios">
+      <h4>Um espaço plural e acolhedor</h4>
+      <ul>
+        <li>Abertas a <strong>todas as idades</strong>, com atividades desenvolvidas especialmente para as crianças.</li>
+        <li><strong>Todos os conhecimentos são bem-vindos</strong>: a vivência de cada pessoa ajuda a levantar
+        os problemas e as potencialidades de cada lugar.</li>
+        <li><strong>Horários definidos junto com as lideranças locais</strong>, para fazer sentido com a rotina
+        de cada território.</li>
+        <li>Realizadas <strong>no próprio território</strong>, o mais perto possível de todos os cidadãos de São Vicente.</li>
+      </ul>
+    </div>
+
+    <h3 class="opa-subtitulo">🗓️ O percurso de construção</h3>
+    <p class="opa-sub">As OPA! não foram desenhadas em gabinete: cada etapa passou pela gestão pública,
+    pelas universidades e pelas lideranças comunitárias.</p>
+    <ol class="opa-percurso">
+      <li class="opa-etapa">
+        <span class="opa-etapa-data">Abril · 2025</span>
+        <h4>Concepção</h4>
+        <p>Diversas oficinas e dinâmicas entre a gestão pública e as universidades para elaborar o desenho das OPA!</p>
+      </li>
+      <li class="opa-etapa">
+        <span class="opa-etapa-data imprecisa">2025</span>
+        <h4>Desenvolvimento</h4>
+        <p>Depois do desenho inicial, as oficinas foram sendo desenvolvidas em reuniões com a equipe acadêmica,
+        a gestão pública e as lideranças comunitárias.</p>
+      </li>
+      <li class="opa-etapa">
+        <span class="opa-etapa-data">Setembro · 2025</span>
+        <h4>Capacitações</h4>
+        <p>Enquanto as oficinas eram pensadas, a equipe se capacitou para garantir que as OPA! fossem
+        um espaço de escuta acolhedor a todos.</p>
+      </li>
+      <li class="opa-etapa">
+        <span class="opa-etapa-data">Outubro · 2025</span>
+        <h4>Preparação</h4>
+        <p>Definição de datas, locais e atividades junto com as lideranças locais, a gestão municipal
+        e a equipe acadêmica.</p>
+      </li>
+    </ol>
+    <p class="opa-nota">As 11 oficinas foram realizadas nos territórios a partir dessa preparação.
+    As datas de cada encontro não constam no material de origem desta seção.</p>
+
+    <h3 class="opa-subtitulo">🗺️ Os territórios e quem conduziu a escuta</h3>
+    <p class="opa-sub">São Vicente foi dividida em seis áreas de trabalho, cobrindo tanto a porção insular
+    quanto a continental. Cada área teve uma facilitadora local, e duas frentes temáticas atravessaram
+    todo o município.</p>
+    <div class="opa-territorios">
+      <figure class="opa-mapa-areas">
+        <img src="assets/oficinas/opa-areas.png"
+             alt="Mapa de São Vicente dividido nas seis áreas de trabalho das oficinas, da Área I à Área VI"
+             loading="lazy">
+        <figcaption>As seis áreas de trabalho das OPA!, entre a região insular (Áreas I a IV) e a
+        continental (Áreas V e VI).<span class="credito">Mapa: acervo do projeto COOP Clima São Vicente</span></figcaption>
+      </figure>
+      <div class="opa-equipe">
+        <h4>Facilitadoras por área</h4>
+        <ul class="opa-areas-lista">
+          <li class="opa-area-item"><span class="opa-dot" style="background:#a8e2c3"></span><span class="opa-area-nome">Área I</span><span class="opa-area-pessoa">Inês</span></li>
+          <li class="opa-area-item"><span class="opa-dot" style="background:#bb88ed"></span><span class="opa-area-nome">Área II</span><span class="opa-area-pessoa">Alessandra</span></li>
+          <li class="opa-area-item"><span class="opa-dot" style="background:#e3e9a2"></span><span class="opa-area-nome">Área III</span><span class="opa-area-pessoa">Camila</span></li>
+          <li class="opa-area-item"><span class="opa-dot" style="background:#e4b1d1"></span><span class="opa-area-nome">Área IV</span><span class="opa-area-pessoa">Mayara</span></li>
+          <li class="opa-area-item"><span class="opa-dot" style="background:#f3bbac"></span><span class="opa-area-nome">Área V</span><span class="opa-area-pessoa">Tania</span></li>
+          <li class="opa-area-item"><span class="opa-dot" style="background:#a49e89"></span><span class="opa-area-nome">Área VI</span><span class="opa-area-pessoa">Benedita</span></li>
+        </ul>
+        <h4>Frentes temáticas</h4>
+        <ul class="opa-areas-lista">
+          <li class="opa-area-item"><span class="badge marrom">Idosos</span><span class="opa-area-pessoa">Patricia</span></li>
+          <li class="opa-area-item"><span class="badge azul">Juventude</span><span class="opa-area-pessoa">Emmily</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="opa-subtitulo">📷 Registros das oficinas</h3>
+    <div class="opa-galeria">
+      <figure class="apr-foto">
+        <img src="assets/oficinas/opa-oficina.jpg"
+             alt="Participantes reunidos em volta de mesas durante uma oficina, com o cartaz OPA! ao fundo"
+             loading="lazy">
+        <figcaption>Roda de conversa em uma das 11 oficinas, que reuniram 361 participantes nos
+        territórios.<span class="credito">Foto: acervo do projeto COOP Clima São Vicente</span></figcaption>
+      </figure>
+      <figure class="apr-foto">
+        <img src="assets/oficinas/opa-memoria.jpg"
+             alt="Painel de papel pardo com linha do tempo feita de bilhetes adesivos e fotografias de enchentes e incêndios"
+             loading="lazy">
+        <figcaption>Resgate da memória de São Vicente: linha do tempo construída pelos participantes com
+        bilhetes e fotografias.<span class="credito">Foto: acervo do projeto COOP Clima São Vicente</span></figcaption>
+      </figure>
+      <figure class="apr-foto">
+        <img src="assets/oficinas/opa-mapeamento.jpg"
+             alt="Mãos apontando para um mapa impresso da cidade coberto de ícones adesivos coloridos"
+             loading="lazy">
+        <figcaption>Redescobrindo os territórios: moradores marcam no mapa impresso os lugares que
+        conhecem.<span class="credito">Foto: acervo do projeto COOP Clima São Vicente</span></figcaption>
+      </figure>
+    </div>
+
+    <h3 class="opa-subtitulo">📍 O mapa colaborativo: 968 pontos</h3>
+    <p class="opa-sub">Somando o que foi marcado em todas as oficinas, os participantes apontaram 968 pontos
+    sobre o mapa da cidade — cada ícone é um lugar que alguém conhece, usa, evita ou gostaria de ver mudar.</p>
+    <figure class="opa-mapa-figura">
+      <img src="assets/oficinas/opa-mapa-pontos.jpg"
+           alt="Mapa de satélite de São Vicente coberto por centenas de ícones coloridos marcados pelos participantes das oficinas"
+           loading="lazy">
+      <figcaption>Os 968 pontos mapeados pelos moradores nas OPA!, sobre a base de satélite do município.
+      Cada cor e ícone representa um tipo de lugar ou situação apontada pelos participantes — a tabela de
+      categorias não consta no material de origem desta seção.<span class="credito">Mapa: acervo do projeto
+      COOP Clima São Vicente</span></figcaption>
+    </figure>
+
+    <p class="fonte sec-fonte"><b>Fonte:</b> COOP Clima São Vicente — Oficinas Participativas de Avaliação (OPA!), 2025.
+    Números, percurso, divisão territorial, fotografias e mapas são do acervo do projeto.</p>
   </section>
 
   <!-- KPIs -->
