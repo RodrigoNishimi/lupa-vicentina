@@ -4,6 +4,8 @@ Painel web 100% estático de utilidade pública para os moradores de São Vicent
 
 O index.html carrega junto a pasta `assets/oficinas/` (imagens da seção das Oficinas Participativas de Avaliação, referenciadas por caminho relativo) — publique as duas coisas.
 
+Além dos números, o painel é construído para responder cinco perguntas ao visitante: **o que estou vendo** (abertura, selos de escopo e subtítulos), **por que isso importa** (bloco de contexto por seção), **como interpretar** ("Como ler" nos gráficos, glossário e notas metodológicas), **de onde vieram os dados** (legenda de fonte em cada elemento e tabela de fontes) e **posso reutilizar** (licença, download em CSV/JSON e citação pronta).
+
 ## Estrutura do Projeto
 
 ```text
@@ -19,6 +21,7 @@ O index.html carrega junto a pasta `assets/oficinas/` (imagens da seção das Of
 ├── template.html                        # Template do dashboard com marcadores de injeção
 ├── index.html                           # ARQUIVO FINAL gerado pelo ETL (não editar à mão — edite o template.html)
 ├── requirements.txt                     # Dependências do projeto
+├── LICENSE                              # GNU GPL v3.0
 └── README.md
 ```
 
@@ -79,6 +82,7 @@ python -m http.server 8123
 
 ## O que o painel oferece
 
+* Abertura "O que é a Lupa Vicentina?" — o que o visitante está vendo, por que aquilo importa e como usar em 3 passos, com contadores preenchidos a partir dos próprios dados e uma faixa de atalhos que funciona como índice das seções.
 * Filtro global por bairro (dropdown) — KPIs, gráficos, mapa e tabelas atualizam sem recarregar a página.
 * KPIs: população, renda média (salários mínimos), densidade (hab/ha), escolas ativas, capacidade estimada de matrículas, unidades de saúde e unidades de saúde por 10 mil habitantes.
 * Gráficos (Chart.js): composição populacional por cor/raça, escolas por categoria administrativa, oferta de ensino por etapa/modalidade, porte das escolas, serviços de saúde disponíveis e cobertura SUS.
@@ -86,6 +90,9 @@ python -m http.server 8123
 * Oficinas Participativas de Avaliação (OPA!): seção editorial de escopo fixo (não responde ao filtro de bairro) com o processo de escuta territorial do projeto — números (11 oficinas, 361 participantes, 968 pontos mapeados), abordagem passado/presente/futuro, linha do tempo da construção, mapa das 6 áreas com as facilitadoras, registros fotográficos e o mapa colaborativo resultante.
 * Rankings: TOP 10 bairros por escolas, por unidades de saúde e por densidade demográfica.
 * Tabelas de detalhamento em abas (Escolas / Saúde), com busca por nome, endereço ou bairro.
+* Camada editorial de leitura: um bloco "Por que isso importa" no topo de cada seção e um "Como ler" dentro de cada gráfico (por que o radar passa de 100%, por que as fatias da rosca se comparam entre anéis, etc.).
+* "Como ler este painel": cuidados de leitura, glossário dos termos usados nos indicadores e notas metodológicas — a versão para o leitor das decisões de ETL listadas mais abaixo.
+* "Dados abertos e reuso": data de geração da versão, tabela de fontes com licença de cada conjunto, declaração de licença do projeto, citação pronta com botão de copiar e **download dos dados tratados em CSV (por conjunto) ou JSON**, gerados no próprio navegador a partir do JSON embutido — sem servidor.
 
 ## Decisões de Tratamento de Dados (ETL)
 
@@ -98,6 +105,29 @@ python -m http.server 8123
 | Porte "Mais de 1000 matrículas" (faixa aberta) | Capacidade contabilizada como 1.000 (piso da faixa) — por isso o KPI mostra valor aproximado. |
 | Bairros presentes só nas bases de escolas/saúde | Aparecem no dropdown em "Outros bairros (sem dados do censo)": mapa e tabelas funcionam; indicadores demográficos exibem "-". |
 | Renda média da cidade | Média por bairro ponderada pela população. |
+
+Essas decisões aparecem para o usuário final em "Como ler este painel" → Notas metodológicas. Ao alterar qualquer uma delas no `etl.py`, atualize também o texto correspondente no `template.html`.
+
+## Fontes de Dados e Licenças
+
+| Conjunto | Fonte | Referência | Condição de uso |
+| :--- | :--- | :--- | :--- |
+| População, cor/raça, renda e área por bairro | [Censo Demográfico — IBGE](https://censo2022.ibge.gov.br/) | 2022 | Dado público — uso livre com citação |
+| Escolas | [Catálogo de Escolas — INEP/MEC](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos) | Extração de jul/2026 | Dados abertos federais — uso livre com citação |
+| Unidades de saúde | [CNES — DATASUS/MS](https://cnes.datasus.gov.br/) | Extração de jul/2026 | Dados abertos federais — uso livre com citação |
+| Mapa e busca de endereços | [OpenStreetMap e Nominatim](https://www.openstreetmap.org/copyright) | Contínua | ODbL — atribuição obrigatória |
+| Fotos da cidade | [Wikimedia Commons](https://commons.wikimedia.org/) | Ver cada imagem | Creative Commons — crédito na legenda |
+| Oficinas OPA!, notícias e texto histórico | Acervo do COOP Clima São Vicente; Prefeitura e imprensa regional | 2025–2026 | Uso mediante crédito |
+
+O painel é uma fotografia do momento da extração: INEP e CNES atualizam suas bases continuamente. A data da versão publicada vem do campo `gerado_em`, preenchido pelo `etl.py` e exibido na seção "Dados abertos e reuso" e no rodapé.
+
+## Licença
+
+O código, os dados tratados e os textos próprios da Lupa Vicentina são distribuídos sob a **GNU General Public License v3.0** — texto integral em [LICENSE](LICENSE). É livre copiar, adaptar e redistribuir — inclusive adaptando o painel para outra cidade — desde que se cite a origem e os trabalhos derivados mantenham a mesma licença, com o código-fonte disponível.
+
+Os dados de origem seguem as licenças dos respectivos produtores, listadas na tabela acima.
+
+O rodapé e a seção "Dados abertos e reuso" do painel publicado apontam para a mesma licença.
 
 ## Identidade Visual
 
