@@ -276,7 +276,9 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   font-size:1.35rem;color:var(--verde-escuro);margin:26px 0 4px;
   display:flex;align-items:center;gap:8px;
 }
-.opa-sub{color:var(--ink-2);font-size:.85rem;margin-bottom:14px;max-width:78ch}
+/* sem max-width, igual a .sec-sub: no desktop o texto acompanha a largura da
+   seção em vez de quebrar numa coluna estreita no meio da página */
+.opa-sub{color:var(--ink-2);font-size:.85rem;margin-bottom:14px}
 .opa-numeros{margin-bottom:4px}
 
 /* os três tempos do território: passado, presente e futuro */
