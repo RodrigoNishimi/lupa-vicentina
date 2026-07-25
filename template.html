@@ -387,6 +387,149 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
   .opa-etapa::before{top:6px;left:-26px;transform:none}
 }
 
+/* ---------- bloco de abertura: o que é, por que importa, como usar ---------- */
+/* Responde de cara às três primeiras perguntas do visitante antes de qualquer número. */
+.intro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.intro-card{
+  background:var(--card);border-radius:var(--raio);box-shadow:var(--sombra);
+  padding:16px 18px;border-top:5px solid var(--verde);
+}
+.intro-card.porque-card{border-top-color:var(--laranja)}
+.intro-card.usar{border-top-color:var(--azul)}
+.intro-card h3{font-size:1.25rem;color:var(--verde-escuro);margin-bottom:8px}
+.intro-card p{font-size:.9rem;margin-bottom:8px}
+.intro-card p:last-child{margin-bottom:0}
+.intro-card ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.intro-card ul li{font-size:.88rem;color:var(--ink-2);padding-left:19px;position:relative}
+.intro-card ul li::before{content:"✓";position:absolute;left:0;color:var(--laranja);font-weight:700}
+.intro-meta{
+  font-size:.8rem;color:var(--ink-2);
+  border-top:1px dashed var(--borda);padding-top:8px;margin-top:10px;
+}
+.intro-meta b{color:var(--verde-escuro)}
+.intro-passos{list-style:none;counter-reset:passo;display:flex;flex-direction:column;gap:9px}
+.intro-passos li{font-size:.88rem;color:var(--ink-2);padding-left:30px;position:relative;counter-increment:passo}
+.intro-passos li::before{
+  content:counter(passo);position:absolute;left:0;top:1px;
+  width:21px;height:21px;border-radius:50%;background:var(--azul);color:#fff;
+  font-weight:700;font-size:.76rem;display:flex;align-items:center;justify-content:center;
+}
+.intro-passos b{color:var(--ink)}
+
+/* atalhos para as seções — funcionam como índice do que existe no painel */
+.guia-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;align-items:center}
+.guia-chips .rotulo{
+  font-size:.75rem;color:var(--ink-2);text-transform:uppercase;
+  letter-spacing:.05em;font-weight:500;margin-right:2px;
+}
+.guia-chips a{
+  display:inline-block;text-decoration:none;font-size:.82rem;font-weight:500;
+  color:var(--verde-escuro);background:#fff;border:1.5px solid var(--borda);
+  border-radius:999px;padding:5px 13px;
+}
+.guia-chips a:hover{border-color:var(--verde);background:#eef6f1}
+/* âncoras não podem parar embaixo da barra fixa de bairro; a altura real dela
+   varia com a largura da tela e é medida em tempo de execução (--offset-ancora) */
+section[id]{scroll-margin-top:var(--offset-ancora,106px)}
+
+/* ---------- "por que isso importa" no topo de cada seção ---------- */
+.porque{
+  background:var(--card);border-left:5px solid var(--azul);border-radius:0 10px 10px 0;
+  padding:10px 15px;margin-bottom:16px;font-size:.87rem;color:var(--ink-2);
+  box-shadow:var(--sombra);
+}
+.porque::before{content:"💡 "}
+.porque b{color:var(--ink);font-weight:700}
+/* só o "Por que isso importa:" de abertura recebe a fonte de título;
+   os demais <b> da frase continuam como ênfase normal */
+.porque>b:first-of-type{
+  font-family:'Londrina Solid',cursive;font-weight:400;letter-spacing:.02em;
+  font-size:1.02rem;color:var(--verde-escuro);
+}
+.porque a,.intro-card a{color:var(--azul);font-weight:500}
+code{
+  font-family:ui-monospace,Consolas,monospace;font-size:.92em;
+  background:#f2f7f4;border-radius:4px;padding:1px 4px;
+}
+
+/* ---------- "como ler" dentro dos cards de gráfico ---------- */
+.comoler{
+  font-size:.76rem;color:var(--ink-2);background:#f2f7f4;border-radius:8px;
+  padding:7px 10px;margin-bottom:10px;line-height:1.4;
+}
+.comoler b{color:var(--verde-escuro);font-weight:700}
+
+/* ---------- como ler o painel: cuidados, glossário e notas ---------- */
+.cuidados{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.cuidado{
+  background:var(--card);border-radius:var(--raio);box-shadow:var(--sombra);
+  padding:14px 16px;border-left:5px solid var(--laranja);
+}
+.cuidado h4{
+  font-family:'Londrina Solid',cursive;font-weight:400;font-size:1.15rem;
+  color:var(--verde-escuro);margin-bottom:5px;
+}
+.cuidado p{font-size:.86rem;color:var(--ink-2)}
+
+.bloco-branco{background:var(--card);border-radius:var(--raio);box-shadow:var(--sombra);padding:16px 20px;margin-top:16px}
+.bloco-branco>h4{
+  font-family:'Londrina Solid',cursive;font-weight:400;font-size:1.25rem;
+  color:var(--verde-escuro);margin-bottom:3px;
+}
+.bloco-branco>.bloco-sub{font-size:.83rem;color:var(--ink-2);margin-bottom:12px}
+/* dois termos por linha em telas largas; o min() impede estouro nas estreitas */
+.glossario{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:9px 26px}
+.glossario>div{padding-bottom:8px;border-bottom:1px solid var(--borda)}
+.glossario dt{font-weight:700;font-size:.87rem;color:var(--ink)}
+.glossario dd{font-size:.83rem;color:var(--ink-2);margin-top:2px}
+.notas-lista{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:8px 26px}
+.notas-lista li{font-size:.84rem;color:var(--ink-2);padding-left:19px;position:relative}
+.notas-lista li::before{content:"▸";position:absolute;left:0;color:var(--laranja);font-weight:700}
+.notas-lista b{color:var(--ink)}
+
+/* ---------- fontes, licenças e reuso ---------- */
+.tabela-fontes{font-size:.82rem}
+.tabela-fontes td{vertical-align:top}
+.tabela-fontes td a{color:var(--azul)}
+.tabela-fontes .conjunto{font-weight:700;color:var(--ink)}
+.lic{
+  display:inline-block;padding:1px 9px;border-radius:999px;font-size:.72rem;font-weight:500;
+  background:#eef6f1;color:var(--verde-escuro);border:1px solid #cfe4d6;
+}
+.reuso-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:16px;margin-top:16px}
+.reuso-card{background:var(--card);border-radius:var(--raio);box-shadow:var(--sombra);padding:16px 18px;border-top:5px solid var(--azul)}
+.reuso-card.licenca{border-top-color:var(--verde)}
+.reuso-card.citar{border-top-color:var(--marrom)}
+.reuso-card h4{
+  font-family:'Londrina Solid',cursive;font-weight:400;font-size:1.2rem;
+  color:var(--verde-escuro);margin-bottom:7px;
+}
+.reuso-card p{font-size:.86rem;color:var(--ink-2);margin-bottom:8px}
+.reuso-card p:last-child{margin-bottom:0}
+.reuso-card a{color:var(--azul)}
+.reuso-card ul{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:8px}
+.reuso-card ul li{font-size:.85rem;color:var(--ink-2);padding-left:19px;position:relative}
+.reuso-card ul li::before{content:"✓";position:absolute;left:0;color:var(--verde);font-weight:700}
+.botoes-download{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.btn-baixar{
+  background:var(--verde);color:#fff;border:none;border-radius:8px;padding:8px 14px;
+  font-family:'Roboto',sans-serif;font-size:.83rem;font-weight:700;cursor:pointer;
+}
+.btn-baixar:hover{background:var(--marrom)}
+.btn-baixar.secundario{background:#fff;color:var(--verde-escuro);border:1.5px solid var(--verde)}
+.btn-baixar.secundario:hover{background:#eef6f1}
+.citacao{
+  background:#faf7f4;border:1px dashed var(--borda);border-radius:10px;
+  padding:11px 14px;font-size:.8rem;color:var(--ink);line-height:1.45;
+}
+.nota-mini{font-size:.75rem;color:var(--ink-2);margin-top:8px}
+.gerado-em{
+  font-size:.82rem;color:var(--ink-2);background:#faf7f4;border:1px dashed var(--borda);
+  border-radius:10px;padding:9px 14px;margin-bottom:14px;
+}
+.gerado-em b{color:var(--marrom)}
+.gerado-em::before{content:"🕒 "}
+
 /* ---------- rodapé ---------- */
 footer{
   background:var(--verde-escuro);color:#cfe4d6;
@@ -423,8 +566,6 @@ footer a{color:var(--azul)}
         <img class="logo" src="__LOGO_DATA__" alt="COOP Clima São Vicente">
         <h1 class="nome-projeto">Lupa Vicentina</h1>
       </div>
-      <p class="sub">Painel de utilidade pública: demografia, escolas e unidades de saúde de São Vicente (SP), bairro a bairro.</p>
-      <p class="sub">Escolha um bairro para ver o retrato local.</p>
     </div>
   </div>
 </header>
@@ -446,15 +587,68 @@ footer a{color:var(--azul)}
 </div>
 
 <main>
+  <!-- Abertura: o que é o painel, por que ele importa e como usá-lo.
+       Responde às perguntas de entrada antes de o visitante encarar o primeiro número. -->
+  <section id="sobre" aria-label="Sobre o painel">
+    <h2 class="sec-titulo">O que é a Lupa Vicentina? <span class="escopo-tag fixo">Comece por aqui</span></h2>
+    <p class="sec-sub">O retrato de São Vicente (SP) bairro a bairro, feito para a população com dados públicos oficiais —
+    livres para consulta, download e reuso.</p>
+    <div class="intro-grid">
+      <div class="intro-card">
+        <h3>👀 O que você está vendo</h3>
+        <p>Quantas pessoas vivem em cada bairro e com que renda, quantas escolas e unidades de saúde existem,
+        <b>onde ficam</b> e <b>o que oferecem</b> — para <b>a cidade inteira</b> ou para <b>um bairro</b>,
+        conforme o filtro verde do topo. O selo ao lado de cada título mostra o conjunto de dados utilizado.</p>
+        <p class="intro-meta"><b id="intro-bairros">–</b> bairros ·
+        <b id="intro-escolas">–</b> escolas · <b id="intro-saude">–</b> unidades de saúde ·
+        <b id="intro-pop">–</b> habitantes (bairros com Censo).</p>
+      </div>
+      <div class="intro-card porque-card">
+        <h3>🎯 Por que isso importa</h3>
+        <p>Reunido por bairro, o dado público mostra <b>onde os serviços estão e onde faltam</b> — base para
+        cobrar, planejar e decidir:</p>
+        <ul>
+          <li>achar a escola ou a unidade de saúde mais perto de casa;</li>
+          <li>sustentar reivindicações com números verificáveis;</li>
+          <li>enxergar desigualdades entre bairros — densidade, renda e acesso definem quem sofre mais com calor extremo e alagamentos.</li>
+        </ul>
+      </div>
+      <div class="intro-card usar">
+        <h3>🧭 Como usar</h3>
+        <ol class="intro-passos">
+          <li><b>Filtre.</b> O seletor de bairro na barra verde comanda mapa, indicadores, gráficos e tabelas.</li>
+          <li><b>Explore.</b> Busque escola, unidade de saúde, endereço ou CEP; clique nos pontos; passe o
+          mouse nos gráficos.</li>
+          <li><b>Leve com você.</b> Baixe as tabelas em <a href="#fontes-reuso">CSV ou JSON</a>.</li>
+        </ol>
+        <p class="intro-meta">Dúvida em algum termo? Veja <a href="#como-ler">Como ler este painel</a>.</p>
+      </div>
+    </div>
+    <nav class="guia-chips" aria-label="Atalhos para as seções">
+      <span class="rotulo">O painel tem:</span>
+      <a href="#mapa-sec">🗺️ Mapa</a>
+      <a href="#detalhamento">📋 Detalhamento</a>
+      <a href="#apresentacao">🏛️ Apresentação da cidade</a>
+      <a href="#opa">🗣️ Oficinas OPA!</a>
+      <a href="#indicadores">📊 Indicadores</a>
+      <a href="#graficos">📈 Gráficos</a>
+      <a href="#rankings">🏅 Rankings</a>
+      <a href="#como-ler">🧠 Como ler</a>
+      <a href="#fontes-reuso">🔓 Dados abertos e reuso</a>
+    </nav>
+  </section>
+
   <!-- Mapa -->
-  <section aria-label="Mapa">
+  <section id="mapa-sec" aria-label="Mapa">
     <h2 class="sec-titulo">Mapa de equipamentos públicos <span class="escopo-tag" data-escopo></span></h2>
     <p class="sec-sub">Use o filtro de bairro no topo da página (ele acompanha a rolagem) e busque por escola,
     unidade de saúde, endereço ou CEP.
     Use o controle no canto superior direito do mapa para ligar/desligar camadas; clique nos pontos para ver detalhes.</p>
+    <p class="porque"><b>Por que isso importa:</b> distância é acesso — o mapa mostra o serviço mais próximo
+    de casa e revela os trechos da cidade que dependem de deslocamentos longos.</p>
     <div class="controles-mapa">
       <div class="busca-mapa">
-        <label for="busca-geral">Buscar no mapa</label>
+        <label for="busca-geral">Buscar no mapa / tabela</label>
         <input class="busca" id="busca-geral" type="search" placeholder="Escola, unidade de saúde, endereço ou CEP em São Vicente…">
       </div>
     </div>
@@ -476,10 +670,13 @@ footer a{color:var(--azul)}
   </section>
 
   <!-- Detalhamento -->
-  <section aria-label="Tabelas de detalhamento">
+  <section id="detalhamento" aria-label="Tabelas de detalhamento">
     <h2 class="sec-titulo">Detalhamento por unidade <span class="escopo-tag" data-escopo></span></h2>
     <p class="sec-sub">Listas completas que respondem ao filtro de bairro e à busca do mapa acima
     — o que você buscar lá aparece destacado aqui e no mapa.</p>
+    <p class="porque"><b>Por que isso importa:</b> cada linha é um equipamento real, com endereço e telefone
+    — serve para resolver um problema concreto e para <b>conferir, unidade por unidade</b>, os números dos
+    indicadores e gráficos.</p>
     <div class="abas">
       <button class="aba ativa" data-aba="escolas" type="button">🏫 Escolas</button>
       <button class="aba" data-aba="saude" type="button">🏥 Unidades de saúde</button>
@@ -507,9 +704,12 @@ footer a{color:var(--azul)}
   </section>
 
   <!-- Apresentação do local -->
-  <section aria-label="Apresentação do local">
+  <section id="apresentacao" aria-label="Apresentação do local">
     <h2 class="sec-titulo">Apresentação São Vicente <span class="escopo-tag" data-escopo></span></h2>
     <p class="sec-sub" id="apr-sub">Conheça um pouco da cidade — história, características e notícias recentes.</p>
+    <p class="porque"><b>Por que isso importa:</b> número sem contexto engana — a história da cidade, sua
+    divisão entre área insular e continental e o avanço do mar ajudam a entender <b>por que</b> os
+    indicadores variam tanto entre bairros.</p>
     <div class="apr-grid">
       <div class="apr-fotos" id="apr-fotos"></div>
       <div class="apr-texto" id="apr-texto"></div>
@@ -523,13 +723,16 @@ footer a{color:var(--azul)}
   <!-- Oficinas Participativas de Avaliação (OPA!) -->
   <!-- Seção editorial de escopo fixo: conteúdo do processo participativo do COOP Clima
        São Vicente. Não usa data-escopo porque não reage ao filtro de bairro. -->
-  <section aria-label="Oficinas Participativas de Avaliação">
+  <section id="opa" aria-label="Oficinas Participativas de Avaliação">
     <h2 class="sec-titulo">COOP Clima São Vicente - Oficinas Participativas de Avaliação (OPA!)
       <span class="escopo-tag fixo">Toda a cidade</span></h2>
     <p class="sec-sub">Além dos dados oficiais, o painel escuta quem vive a cidade. As OPA! foram um processo
     de escuta territorial do COOP Clima São Vicente, construído junto com lideranças comunitárias, gestão
     municipal e universidades, com o objetivo de <strong>fortalecer a participação social e o diálogo, por meio
     de uma construção coletiva com as comunidades</strong>.</p>
+    <p class="porque"><b>Por que isso importa:</b> os cadastros federais dizem quantos equipamentos existem,
+    não o que as pessoas sentem falta ou querem mudar — as OPA! trazem esse conhecimento para o painel.
+    Seção <b>editorial e de escopo fixo</b>: não muda com o filtro de bairro.</p>
 
     <div class="kpi-grid opa-numeros">
       <div class="kpi">
@@ -694,9 +897,13 @@ footer a{color:var(--azul)}
   </section>
 
   <!-- KPIs -->
-  <section aria-label="Indicadores-resumo">
+  <section id="indicadores" aria-label="Indicadores-resumo">
     <h2 class="sec-titulo">Principais Indicadores <span class="escopo-tag" data-escopo></span></h2>
     <p class="sec-sub" id="kpi-escopo">Indicadores de toda a cidade.</p>
+    <p class="porque"><b>Por que isso importa:</b> mostram se a oferta de escolas e saúde
+    <b>acompanha o tamanho da população</b> de cada lugar. Com um bairro filtrado, cada card traz também o
+    valor da cidade e a fatia que o bairro representa. Definições no
+    <a href="#como-ler">glossário</a>.</p>
     <div class="kpi-grid" id="kpi-grid">
       <div class="kpi"><div class="rotulo">População</div><div class="valor" id="kpi-pop">–</div><div class="nota">soma das populações por cor/raça</div><div class="comp" id="comp-pop"></div></div>
       <div class="kpi"><div class="rotulo">Renda média</div><div class="valor" id="kpi-renda">–</div><div class="nota">salários mínimos (média por bairro)</div><div class="comp" id="comp-renda"></div></div>
@@ -710,46 +917,62 @@ footer a{color:var(--azul)}
   </section>
 
   <!-- Gráficos -->
-  <section aria-label="Gráficos">
+  <section id="graficos" aria-label="Gráficos">
     <h2 class="sec-titulo">Panorama em gráficos <span class="escopo-tag" data-escopo></span></h2>
     <p class="sec-sub">Cada gráfico usa o formato que melhor mostra a comparação entre o bairro escolhido e São Vicente inteira.
     Como o bairro sempre tem menos unidades que a cidade, os valores aparecem em <strong>proporção (%)</strong> dentro de cada recorte —
     assim a comparação é justa. Em todos eles, <strong style="color:var(--laranja)">laranja</strong> é o bairro e
     <strong style="color:var(--verde)">verde</strong> é a cidade. Passe o mouse para ver as porcentagens e os números absolutos.</p>
+    <p class="porque"><b>Por que isso importa:</b> é comparando o <b>perfil</b> do bairro com o da cidade que
+    as desigualdades aparecem — dois bairros podem ter o mesmo número de escolas e ofertas de ensino
+    completamente diferentes. A proporção mostra o que a contagem bruta esconde.</p>
     <div class="chart-grid">
       <div class="chart-card">
         <h3>Composição populacional</h3>
         <p class="desc">Autodeclaração de cor/raça (Censo) — barras 100%: cada linha soma o total do recorte</p>
+        <p class="comoler"><b>Como ler:</b> cada barra é 100% da população do recorte. Compare o
+        <b>tamanho das faixas</b>, não o comprimento total. “Negra” soma preta + parda.</p>
         <div class="chart-wrap"><canvas id="ch-demografia"></canvas></div>
         <p class="fonte"><b>Fonte:</b> Censo Demográfico 2022 (IBGE)</p>
       </div>
       <div class="chart-card">
         <h3>Escolas por categoria administrativa</h3>
         <p class="desc">Rosca dupla — anel interno: bairro · anel externo: cidade (só escolas em atividade)</p>
+        <p class="comoler"><b>Como ler:</b> cada anel soma 100% — compare as <b>fatias de mesma cor</b> entre
+        o anel de dentro (bairro) e o de fora (cidade). Categoria = quem mantém a escola.</p>
         <div class="chart-wrap"><canvas id="ch-categoria"></canvas></div>
         <p class="fonte"><b>Fonte:</b> Catálogo de Escolas (INEP/MEC)</p>
       </div>
       <div class="chart-card">
         <h3>Oferta de ensino</h3>
         <p class="desc">Radar do perfil de oferta — % das escolas do recorte que atendem cada etapa/modalidade</p>
+        <p class="comoler"><b>Como ler:</b> quanto mais longe do centro, maior a fatia de escolas que oferece
+        a etapa (0% no centro, 100% na borda). A <b>soma passa de 100%</b>: uma escola pode oferecer várias.</p>
         <div class="chart-wrap"><canvas id="ch-etapas"></canvas></div>
         <p class="fonte"><b>Fonte:</b> Catálogo de Escolas (INEP/MEC)</p>
       </div>
       <div class="chart-card">
         <h3>Capacidade de ensino (porte)</h3>
         <p class="desc">Distribuição das escolas pelas faixas de matrícula, da menor para a maior — % do recorte</p>
+        <p class="comoler"><b>Como ler:</b> faixas de tamanho da menor à maior; cada linha soma 100%. Pico à
+        <b>esquerda</b> = escolas pequenas; à <b>direita</b> = grandes. O INEP publica faixas, não o número exato.</p>
         <div class="chart-wrap"><canvas id="ch-porte"></canvas></div>
         <p class="fonte"><b>Fonte:</b> Catálogo de Escolas (INEP/MEC)</p>
       </div>
       <div class="chart-card">
         <h3>Serviços de saúde disponíveis</h3>
         <p class="desc">Barras lado a lado — % das unidades do recorte que oferecem cada serviço</p>
+        <p class="comoler"><b>Como ler:</b> cada par compara a fatia de unidades com aquele serviço no bairro
+        e na cidade; como uma unidade pode ter vários, as barras <b>não somam 100%</b>. Serviços de alta
+        complexidade são raros — barra baixa é o padrão.</p>
         <div class="chart-wrap" style="min-height:280px"><canvas id="ch-servicos"></canvas></div>
         <p class="fonte"><b>Fonte:</b> CNES, Cadastro Nacional de Estabelecimentos de Saúde (DATASUS/Ministério da Saúde)</p>
       </div>
       <div class="chart-card">
         <h3>Cobertura do SUS</h3>
         <p class="desc">% das unidades de saúde que atendem pelo SUS — bairro × cidade</p>
+        <p class="comoler"><b>Como ler:</b> fatia das unidades que atende pelo SUS, isto é,
+        <b>acessível sem plano de saúde</b> — separa “ter unidade perto” de “ter atendimento disponível”.</p>
         <div class="chart-wrap"><canvas id="ch-sus"></canvas></div>
         <p class="fonte"><b>Fonte:</b> CNES, Cadastro Nacional de Estabelecimentos de Saúde (DATASUS/Ministério da Saúde)</p>
       </div>
@@ -757,9 +980,12 @@ footer a{color:var(--azul)}
   </section>
 
   <!-- Rankings -->
-  <section aria-label="Rankings de bairros">
+  <section id="rankings" aria-label="Rankings de bairros">
     <h2 class="sec-titulo">Rankings entre bairros <span class="escopo-tag fixo">Todos os bairros da cidade</span></h2>
     <p class="sec-sub" id="rank-sub">Comparação entre todos os bairros da cidade (o bairro selecionado fica destacado).</p>
+    <p class="porque"><b>Por que isso importa:</b> a densidade é <b>indicador-chave para adaptação
+    climática</b> — bairros adensados concentram mais gente exposta a calor extremo e alagamentos. Estas
+    listas são sempre da cidade inteira; o filtro só destaca a linha do bairro.</p>
     <div class="tabela-dupla">
       <div class="tabela-card">
         <h3>TOP 10 — bairros com mais escolas</h3>
@@ -777,8 +1003,185 @@ footer a{color:var(--azul)}
     <div class="chart-card" style="margin-top:16px">
       <h3>Densidade demográfica — TOP 10 bairros (hab/ha)</h3>
       <p class="desc">Bairros mais adensados da cidade — indicador-chave para adaptação climática</p>
+      <p class="comoler"><b>Como ler:</b> habitantes por hectare (1 ha ≈ um quarteirão); o bairro filtrado
+      fica <b style="color:#e87722">laranja</b> se estiver entre os 10 primeiros. Densidade alta só vira
+      problema quando escolas, saúde e área verde não acompanham.</p>
       <div class="chart-wrap" style="min-height:300px"><canvas id="ch-densidade"></canvas></div>
       <p class="fonte"><b>Fonte:</b> Censo Demográfico 2022 (IBGE)</p>
+    </div>
+  </section>
+
+  <!-- Como ler o painel: cuidados de leitura, glossário e notas metodológicas.
+       Seção de escopo fixo: educa o usuário sobre o que os números significam
+       e sobre os limites do que eles podem dizer. -->
+  <section id="como-ler" aria-label="Como ler este painel">
+    <h2 class="sec-titulo">Como ler este painel <span class="escopo-tag fixo">Vale para tudo</span></h2>
+    <p class="sec-sub">Todo dado tem um jeito certo de ser lido — e um limite do que pode afirmar.</p>
+
+    <div class="cuidados">
+      <div class="cuidado">
+        <h4>Compare proporções, não contagens</h4>
+        <p>Um bairro sempre terá menos escolas que a cidade inteira. Por isso os gráficos usam
+        <b>a fatia (%) de cada recorte</b> e os indicadores trazem medidas relativas.</p>
+      </div>
+      <div class="cuidado">
+        <h4>Mais equipamentos ≠ melhor atendimento</h4>
+        <p>O painel conta <b>unidades cadastradas</b> — não mede qualidade, vagas, filas nem equipe. Um bairro
+        no topo do ranking pode continuar mal atendido.</p>
+      </div>
+      <div class="cuidado">
+        <h4>O cadastro tem limites</h4>
+        <p>Este painel é uma <b>fotografia da extração</b>: endereços e telefones podem ter mudado. E os
+        limites de bairro são os do <b>cadastro oficial</b>, nem sempre iguais aos que os moradores reconhecem.</p>
+      </div>
+    </div>
+
+    <div class="bloco-branco">
+      <h4>📖 Glossário</h4>
+      <p class="bloco-sub">Os termos usados nos indicadores, gráficos e tabelas.</p>
+      <dl class="glossario">
+        <div><dt>População (do bairro)</dt><dd>Soma das pessoas por cor/raça no Censo 2022, agregadas do setor
+        censitário para o bairro.</dd></div>
+        <div><dt>Renda média (salários mínimos)</dt><dd>Rendimento médio no bairro. Na cidade, é a média dos bairros
+        <b>ponderada pela população</b>.</dd></div>
+        <div><dt>Densidade (hab/ha)</dt><dd>Habitantes por hectare (10.000 m², cerca de um quarteirão).</dd></div>
+        <div><dt>Escola ativa</dt><dd>Escola sem a situação “Paralisada” no INEP. As paralisadas ficam nas tabelas,
+        fora dos indicadores e gráficos.</dd></div>
+        <div><dt>Porte da escola</dt><dd>Faixa de matrículas informada pelo INEP — o cadastro publica a faixa, nunca
+        o número exato.</dd></div>
+        <div><dt>Capacidade de matrículas (≈)</dt><dd>Soma do <b>teto de cada faixa de porte</b>: ordem de grandeza,
+        não vagas reais.</dd></div>
+        <div><dt>Categoria administrativa</dt><dd>Quem mantém a escola: prefeitura, governo estadual ou
+        iniciativa privada.</dd></div>
+        <div><dt>Etapas e modalidades</dt><dd>Ed. Infantil, Fundamental, Médio, EJA e Profissional. Uma escola pode
+        oferecer várias.</dd></div>
+        <div><dt>Unidade de saúde</dt><dd>Estabelecimento cadastrado no CNES — de UBS a laboratório e consultório
+        particular. Nem toda unidade é pública.</dd></div>
+        <div><dt>Atende SUS</dt><dd>Registra atendimento ambulatorial pelo SUS, ou seja,
+        <b>acessível sem plano de saúde</b>.</dd></div>
+        <div><dt>Saúde por 10 mil hab.</dt><dd>Unidades ÷ população × 10.000 — compara bairros de tamanhos
+        diferentes.</dd></div>
+        <div><dt>Recorte</dt><dd>O que está sendo exibido: toda a cidade ou um bairro. O selo ao lado de cada
+        título indica qual.</dd></div>
+        <div><dt>INEP e CNES</dt><dd>Cadastros nacionais de escolas (MEC) e de estabelecimentos de saúde
+        (Ministério da Saúde).</dd></div>
+      </dl>
+    </div>
+
+    <div class="bloco-branco">
+      <h4>🔧 Notas metodológicas</h4>
+      <p class="bloco-sub">Decisões de tratamento aplicadas aos arquivos originais — todas no código aberto do projeto.</p>
+      <ul class="notas-lista">
+        <li><b>Totais da cidade:</b> os indicadores demográficos somam só os <b id="nota-n-censo">–</b> bairros
+        com dados do Censo, então o total de habitantes é menor que o do município.</li>
+        <li><b>Bairros sem censo:</b> <b id="nota-n-extra">–</b> bairros só existem nas bases de escolas e saúde —
+        funcionam no mapa e nas tabelas, mas exibem “–” nos indicadores demográficos.</li>
+        <li><b>Escolas paralisadas:</b> ficam nas tabelas, fora dos indicadores e gráficos.</li>
+        <li><b>Capacidade de matrículas:</b> a faixa aberta “mais de 1000” foi contada como 1.000.</li>
+        <li><b>Renda da cidade:</b> média ponderada pela população, não média simples entre bairros.</li>
+        <li><b>Nomes de bairro:</b> padronizados entre as três bases para permitir o cruzamento.</li>
+        <li><b>Coordenadas:</b> corrigidas na base do CNES; pontos que caíram fora de São Vicente são erro de
+        geocodificação e não aparecem no mapa, embora continuem nas tabelas.</li>
+        <li><b>Busca por endereço/CEP:</b> via Nominatim (OpenStreetMap), precisa de internet e destaca o que
+        está num raio de 600 m.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Transparência e reuso: de onde vem cada dado, sob que licença e como baixar.
+       Fecha o painel respondendo "posso reutilizar?" com download real dos dados. -->
+  <section id="fontes-reuso" aria-label="Fontes dos dados e reuso">
+    <h2 class="sec-titulo">Dados abertos e reuso <span class="escopo-tag fixo">Transparência</span></h2>
+    <p class="sec-sub">Todo número vem de uma fonte pública identificável — e você pode baixar, conferir e
+    reaproveitar o que quiser.</p>
+
+    <p class="gerado-em">Versão gerada em <b id="gerado-em">–</b>. Os órgãos de origem atualizam suas bases
+    continuamente: para o dado mais recente, consulte a fonte primária.</p>
+
+    <div class="tabela-card">
+      <h3>De onde vem cada dado</h3>
+      <table class="tabela-fontes">
+        <thead><tr>
+          <th>Conjunto de dados</th><th>Fonte</th><th>Referência</th><th>Condição de uso</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="conjunto">População, cor/raça, renda e área por bairro</td>
+            <td><a href="https://censo2022.ibge.gov.br/" target="_blank" rel="noopener">Censo Demográfico — IBGE ↗</a></td>
+            <td>2022</td>
+            <td><span class="lic">Dado público — uso livre com citação</span></td>
+          </tr>
+          <tr>
+            <td class="conjunto">Escolas</td>
+            <td><a href="https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos" target="_blank" rel="noopener">Catálogo de Escolas — INEP/MEC ↗</a></td>
+            <td>Extração de jul/2026</td>
+            <td><span class="lic">Dados abertos federais — uso livre com citação</span></td>
+          </tr>
+          <tr>
+            <td class="conjunto">Unidades de saúde</td>
+            <td><a href="https://cnes.datasus.gov.br/" target="_blank" rel="noopener">CNES — DATASUS/MS ↗</a></td>
+            <td>Extração de jul/2026</td>
+            <td><span class="lic">Dados abertos federais — uso livre com citação</span></td>
+          </tr>
+          <tr>
+            <td class="conjunto">Mapa e busca de endereços</td>
+            <td><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap e Nominatim ↗</a></td>
+            <td>Contínua</td>
+            <td><span class="lic">ODbL — atribuição obrigatória</span></td>
+          </tr>
+          <tr>
+            <td class="conjunto">Fotos da cidade</td>
+            <td><a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons ↗</a></td>
+            <td>Ver cada imagem</td>
+            <td><span class="lic">Creative Commons — crédito na legenda</span></td>
+          </tr>
+          <tr>
+            <td class="conjunto">Oficinas OPA! · notícias e texto histórico</td>
+            <td>Acervo do COOP Clima São Vicente · Prefeitura e imprensa regional</td>
+            <td>2025–2026</td>
+            <td><span class="lic">Uso mediante crédito — fonte em cada card</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="fonte">Os dados oficiais citados são públicos por força da Lei de Acesso à Informação
+      (Lei nº 12.527/2011). Para uso comercial, confira os termos de cada órgão.</p>
+    </div>
+
+    <div class="reuso-grid">
+      <div class="reuso-card licenca">
+        <h4>✅ Sim, você pode reutilizar</h4>
+        <p>Código, dados tratados e textos próprios estão sob a
+        <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener">GNU GPL v3.0 ↗</a>:
+        copie, adapte, publique sua versão — inclusive para outra cidade.</p>
+        <p>As duas condições: <b>cite a origem</b> e <b>mantenha a mesma licença</b> nos derivados, com o
+        código disponível.</p>
+        <p class="nota-mini">Os dados de origem seguem as licenças dos respectivos produtores, na tabela acima.</p>
+      </div>
+
+      <div class="reuso-card">
+        <h4>⬇️ Baixe os dados</h4>
+        <p>Os mesmos dados desta página, tratados e padronizados por bairro, prontos para planilha, QGIS ou
+        script — gerados no seu navegador.</p>
+        <div class="botoes-download">
+          <button class="btn-baixar" type="button" data-baixar="censo">Censo (CSV)</button>
+          <button class="btn-baixar" type="button" data-baixar="escolas">Escolas (CSV)</button>
+          <button class="btn-baixar" type="button" data-baixar="saude">Saúde (CSV)</button>
+          <button class="btn-baixar secundario" type="button" data-baixar="json">Tudo em JSON</button>
+        </div>
+        <p class="nota-mini">CSV em UTF-8, separador <b>;</b> — abre direto no Excel e no LibreOffice.
+        <code>lat</code>/<code>lng</code> vêm vazias sem coordenada válida.</p>
+        <p class="nota-mini">Código e dados brutos:
+        <a href="https://github.com/RodrigoNishimi/lupa-vicentina" target="_blank" rel="noopener">github.com/RodrigoNishimi/lupa-vicentina ↗</a></p>
+      </div>
+
+      <div class="reuso-card citar">
+        <h4>📝 Como citar</h4>
+        <p class="citacao" id="texto-citacao">–</p>
+        <div class="botoes-download">
+          <button class="btn-baixar secundario" id="btn-copiar-citacao" type="button">Copiar citação</button>
+        </div>
+        <p class="nota-mini">Ao reutilizar tabelas ou gráficos, cite também a fonte primária do dado.</p>
+      </div>
     </div>
   </section>
 </main>
@@ -788,9 +1191,12 @@ footer a{color:var(--azul)}
     <img class="logo" src="__LOGO_DATA__" alt="Lupa Vicentina">
     <span class="titulo">Lupa Vicentina</span>
   </div>
-  <p>Painel estático gerado a partir de dados públicos (Censo demográfico 2022,
-  INEP - Catálogo de Escolas e CNES/Saúde).</p>
-  <p>Mapa © colaboradores do <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>.</p>
+  <p>Painel estático de utilidade pública com dados abertos: Censo 2022 (IBGE), Catálogo de Escolas (INEP/MEC)
+  e CNES (DATASUS/MS) · mapa © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (ODbL).
+  Veja <a href="#fontes-reuso">Dados abertos e reuso</a> e <a href="#como-ler">Como ler este painel</a>.</p>
+  <p>Conteúdo próprio sob <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener">GNU GPL v3.0</a>
+  · código e dados em <a href="https://github.com/RodrigoNishimi/lupa-vicentina" target="_blank" rel="noopener">github.com/RodrigoNishimi/lupa-vicentina</a>
+  · versão de <span id="gerado-em-rodape">–</span> · projeto COOP Clima São Vicente.</p>
 </footer>
 
 <script>
@@ -1630,6 +2036,132 @@ function atualizaApresentacao(){
 
   $('apr-fonte').innerHTML = dados.fonte;
 }
+
+/* ================= transparência: números da versão e data ================= */
+/* Preenche, a partir dos próprios dados embutidos, os contadores da abertura e
+   das notas metodológicas — assim eles nunca ficam desatualizados no texto. */
+const fmtData = iso => {
+  const [a,m,d] = String(iso||'').split('-').map(Number);
+  if (!a || !m || !d) return '–';
+  return new Date(a, m-1, d).toLocaleDateString('pt-BR', {day:'2-digit', month:'long', year:'numeric'});
+};
+const DATA_GERACAO = fmtData(DATA.gerado_em);
+
+/* A barra de bairro é fixa e muda de altura conforme a largura da tela e o
+   tamanho do texto de contexto (que só é preenchido depois, ao trocar de bairro).
+   Observar a barra mantém o deslocamento das âncoras sempre correto. */
+(function ajustaAncoras(){
+  const barra = document.querySelector('.barra-bairro');
+  const aplica = () => document.documentElement.style
+    .setProperty('--offset-ancora', (barra.offsetHeight + 14) + 'px');
+  aplica();
+  if (window.ResizeObserver) new ResizeObserver(aplica).observe(barra);
+  else window.addEventListener('resize', aplica);
+})();
+
+(function preencheTransparencia(){
+  $('intro-bairros').textContent = fmtInt(DATA.censo.length + DATA.extra_bairros.length);
+  $('intro-escolas').textContent = fmtInt(DATA.escolas.length);
+  $('intro-saude').textContent   = fmtInt(DATA.saude.length);
+  $('intro-pop').textContent     = fmtInt(CIDADE.pop);
+  $('nota-n-censo').textContent  = fmtInt(DATA.censo.length);
+  $('nota-n-extra').textContent  = fmtInt(DATA.extra_bairros.length);
+  $('gerado-em').textContent = DATA_GERACAO;
+  $('gerado-em-rodape').textContent = DATA_GERACAO;
+
+  const hoje = new Date().toLocaleDateString('pt-BR');
+  $('texto-citacao').textContent =
+    `COOP Clima São Vicente. Lupa Vicentina: painel de bairros de São Vicente (SP). ` +
+    `Versão de ${DATA_GERACAO}. Dados: IBGE (Censo Demográfico 2022), INEP/MEC (Catálogo de Escolas) ` +
+    `e DATASUS/Ministério da Saúde (CNES). Disponível em: ` +
+    `https://github.com/RodrigoNishimi/lupa-vicentina. Acesso em: ${hoje}.`;
+})();
+
+$('btn-copiar-citacao').addEventListener('click', async (ev)=>{
+  const btn = ev.currentTarget, original = btn.textContent;
+  try{
+    await navigator.clipboard.writeText($('texto-citacao').textContent);
+    btn.textContent = 'Citação copiada!';
+  }catch(e){
+    // clipboard bloqueado (file:// ou sem permissão): seleciona o texto para cópia manual
+    const r = document.createRange(); r.selectNodeContents($('texto-citacao'));
+    const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    btn.textContent = 'Selecionado — use Ctrl+C';
+  }
+  setTimeout(()=>{ btn.textContent = original; }, 2500);
+});
+
+/* ================= download dos dados (dados abertos) =================
+   Gera CSV/JSON no próprio navegador a partir do JSON já embutido na página:
+   o painel é estático e mesmo assim entrega os dados brutos tratados. */
+const CSV_SEP = ';';
+const simNao = v => v ? 'sim' : 'não';
+// aspas só quando necessário, dobrando as internas (RFC 4180)
+const csvCampo = v => {
+  if (v == null) return '';
+  const s = String(v);
+  return /[";\r\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
+};
+function montaCsv(colunas, linhas){
+  const corpo = linhas.map(l => colunas.map(c => csvCampo(l[c])).join(CSV_SEP));
+  // BOM inicial: o Excel em português só reconhece o UTF-8 com ele
+  return '\uFEFF' + [colunas.join(CSV_SEP)].concat(corpo).join('\r\n');
+}
+function baixaArquivo(nome, conteudo, tipo){
+  const url = URL.createObjectURL(new Blob([conteudo], {type:tipo}));
+  const a = document.createElement('a');
+  a.href = url; a.download = nome;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+}
+
+const EXPORTA = {
+  censo: () => ({
+    nome: 'censo-por-bairro',
+    colunas: ['bairro','situacao','area_km2','pop_total','pop_branca','pop_negra','pop_amarela',
+              'pop_indigena','hab_ha','densidade','renda_sal'],
+    linhas: DATA.censo
+  }),
+  escolas: () => ({
+    nome: 'escolas',
+    colunas: ['nome','categoria','bairro','endereco','telefone','porte','capacidade_estimada',
+              'etapas','status','lat','lng'],
+    linhas: DATA.escolas.map(e => ({
+      nome:e.nome, categoria:e.categoria, bairro:nomeBairro(e.key), endereco:e.endereco,
+      telefone:e.telefone, porte:e.porte||'', capacidade_estimada:e.capacidade,
+      etapas:e.etapas.join(', '), status:e.status, lat:e.lat, lng:e.lng
+    }))
+  }),
+  saude: () => ({
+    nome: 'unidades-saude',
+    colunas: ['nome','bairro','endereco','telefone','turno','atende_sus','atend_ambulatorial',
+              'servico_apoio','atend_hospitalar','centro_cirurgico','centro_obstetrico',
+              'centro_neonatal','lat','lng'],
+    linhas: DATA.saude.map(s => ({
+      nome:s.nome, bairro:nomeBairro(s.key), endereco:s.endereco, telefone:s.telefone,
+      turno:s.turno, atende_sus:simNao(s.sus),
+      atend_ambulatorial:simNao(s.servicos.ambulatorial), servico_apoio:simNao(s.servicos.apoio),
+      atend_hospitalar:simNao(s.servicos.hospitalar), centro_cirurgico:simNao(s.servicos.cirurgico),
+      centro_obstetrico:simNao(s.servicos.obstetrico), centro_neonatal:simNao(s.servicos.neonatal),
+      lat:s.lat, lng:s.lng
+    }))
+  })
+};
+
+document.querySelectorAll('[data-baixar]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const alvo = btn.dataset.baixar;
+    const sufixo = DATA.gerado_em || 'versao-atual';
+    if (alvo === 'json'){
+      baixaArquivo(`lupa-vicentina-dados-${sufixo}.json`,
+                   JSON.stringify(DATA, null, 2), 'application/json;charset=utf-8');
+      return;
+    }
+    const {nome, colunas, linhas} = EXPORTA[alvo]();
+    baixaArquivo(`lupa-vicentina-${nome}-${sufixo}.csv`,
+                 montaCsv(colunas, linhas), 'text/csv;charset=utf-8');
+  });
+});
 
 /* ================= orquestração ================= */
 function atualizaTudo(){
