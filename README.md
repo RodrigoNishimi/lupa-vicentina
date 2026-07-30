@@ -1,5 +1,9 @@
 # Lupa Vicentina: Dashboard COOP Clima São Vicente
 
+**Link do repositório Github:** https://github.com/RodrigoNishimi/lupa-vicentina.git
+
+**Link do site:** https://rodrigonishimi.github.io/lupa-vicentina/
+
 Painel web 100% estático de utilidade pública para os moradores de São Vicente (SP): demografia, escolas e unidades de saúde, bairro a bairro. Não há backend nem banco de dados — um script de ETL em Python lê as planilhas, trata os dados e gera o index.html com todos os dados JSON embutidos, pronto para hospedar no GitHub Pages.
 
 O index.html carrega junto a pasta `assets/oficinas/` (imagens da seção das Oficinas Participativas de Avaliação, referenciadas por caminho relativo) — publique as duas coisas.
